@@ -1,40 +1,9 @@
 import pandas as pd
-import openpyxl
 import networkx as nx
 import plotly.graph_objects as go
 import streamlit as st
 
-def read_excel_file(file_path):
-    # Load the Excel file
-    workbook = openpyxl.load_workbook(file_path)
-    
-    # Select the first worksheet
-    sheet = workbook.worksheets[0]
-
-    # Get the title from the first row
-    title = sheet[1][0].value
-
-    # Get the headers from the second row
-    headers = [cell.value for cell in sheet[2]]
-
-    # Get data starting from the third row
-    data = []
-    for row in sheet.iter_rows(min_row=3, values_only=True):
-        data.append(row)
-
-    # Create a DataFrame
-    df = pd.DataFrame(data, columns=headers)
-
-    return title, df
-
-# Provide the path to your Excel file
-excel_file_path = 'measures.xlsx'
-
-# Call the function
-title, dataframe = read_excel_file(excel_file_path)
-
-# Fill empty cells with 'empty'
-df = dataframe.fillna('empty')
+df = pd.read_csv('measures.csv')
 
 # Create a graph
 G = nx.Graph()
