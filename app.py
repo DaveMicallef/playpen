@@ -43,7 +43,7 @@ node_trace = go.Scatter(
     text=[node for node in G.nodes()],
     textposition='top center',
     hoverinfo='text',
-    textfont=dict(size=7, color='black', family='Arial, sans-serif')
+    textfont=dict(size=12, color='black', family='Arial, sans-serif')
 )
 
 # Create edge label trace
